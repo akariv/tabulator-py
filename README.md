@@ -1,17 +1,11 @@
-# tabulator-py
+# dataflows-tabulator-py
 
-[![Travis](https://img.shields.io/travis/frictionlessdata/tabulator-py/master.svg)](https://travis-ci.org/frictionlessdata/tabulator-py)
-[![Coveralls](http://img.shields.io/coveralls/frictionlessdata/tabulator-py.svg?branch=master)](https://coveralls.io/r/frictionlessdata/tabulator-py?branch=master)
-[![PyPi](https://img.shields.io/pypi/v/tabulator.svg)](https://pypi.python.org/pypi/tabulator)
-[![Github](https://img.shields.io/badge/github-master-brightgreen)](https://github.com/frictionlessdata/tabulator-py)
-[![Gitter](https://img.shields.io/gitter/room/frictionlessdata/chat.svg)](https://gitter.im/frictionlessdata/chat)
+[![PyPi](https://img.shields.io/pypi/v/dataflows-tabulator.svg)](https://pypi.python.org/pypi/dataflows-tabulator)
+[![Github](https://img.shields.io/badge/github-master-brightgreen)](https://github.com/akariv/tabulator-py)
 
 A library for reading and writing tabular data (csv/xls/json/etc).
 
-> **[Important Notice]** We have released [Frictionless Framework](https://github.com/frictionlessdata/frictionless-py). This framework is logical continuation of `tabulator` that was extended to be a complete data solution. The change in not breaking for the existing software so no actions are required. Please read the [Migration Guide](https://framework.frictionlessdata.io/docs/development/migration) from `tabulator` to Frictionless Framework.
-> - we continue to bug-fix `tabulator@1.x` in this [repository](https://github.com/frictionlessdata/tabulator-py) as well as it's available on [PyPi](https://pypi.org/project/tabulator/) as it was before
-> - please note that `frictionless@3.x` version's API, we're working on at the moment, is not stable
-> - we will release `frictionless@4.x` by the end of 2020 to be the first SemVer/stable version
+> **[Important Notice]** This is a fork of the archived [tabulator-py](https://github.com/frictionlessdata/tabulator-py) repository. The original repository is no longer maintained. This fork is maintained by Adam Kariv.
 
 ## Features
 

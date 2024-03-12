@@ -18,7 +18,7 @@ def read(*paths):
 
 
 # Prepare
-PACKAGE = 'tabulator'
+PACKAGE = 'dataflows-tabulator'
 INSTALL_REQUIRES = [
     # General
     'six>=1.9',
@@ -92,7 +92,7 @@ setup(
     description='Consistent interface for stream reading and writing tabular data (csv/xls/json/etc)',
     author='Open Knowledge Foundation',
     author_email='info@okfn.org',
-    url='https://github.com/frictionlessdata/tabulator-py',
+    url='https://github.com/akariv/tabulator-py',
     license='MIT',
     keywords=[
         'frictionless data',
