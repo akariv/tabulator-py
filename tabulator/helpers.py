@@ -47,6 +47,8 @@ def detect_scheme_and_format(source):
             return (None, 'sql')
 
     # General
+    if source.startswith('text://'):
+        return ('text', None)
     parsed = urlparse(source)
     scheme = parsed.scheme.lower()
     if len(scheme) < 2:

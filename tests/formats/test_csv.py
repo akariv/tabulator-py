@@ -150,11 +150,10 @@ def test_stream_csv_dialect_should_not_persist_if_sniffing_fails_issue_goodtable
 
 
 def test_stream_csv_quotechar_is_empty_string():
+    import csv
     source = 'value1,value2",value3'
-    with Stream(source, scheme='text', format='csv', quotechar='') as stream:
+    with Stream(source, scheme='text', format='csv', quoting=csv.QUOTE_NONE) as stream:
         stream.read() == ['value1', 'value2"', 'value3']
-
-
 # Write
 
 def test_stream_save_csv(tmpdir):

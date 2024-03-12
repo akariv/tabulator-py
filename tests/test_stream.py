@@ -655,12 +655,20 @@ def test_stream_skip_rows_regex():
         assert stream.read() == [['John', 1], ['Alex', 2]]
 
 
-def test_stream_skip_rows_preset():
+def test_stream_skip_rows_preset_blank():
     source = [['name', 'order'], ['', ''], [], ['Ray', 0], ['John', 1], ['Alex', 2], ['', 3], [None, 4], ['', None]]
     skip_rows = [{'type': 'preset', 'value': 'blank'}]
     with Stream(source, headers=1, skip_rows=skip_rows) as stream:
         assert stream.headers == ['name', 'order']
         assert stream.read() == [['Ray', 0], ['John', 1], ['Alex', 2], ['', 3], [None, 4]]
+
+
+def test_stream_skip_rows_preset_auto():
+    source = [['Staff locations'], ['Compiled on:', '2022-01-01'], [], ['name', 'order', 'city'], ['Ray', 0, 'London'], ['John', 1, 'Tokyo'], ['Alex', 2, 'Berlin']]
+    skip_rows = [{'type': 'preset', 'value': 'auto'}]
+    with Stream(source, headers=1, skip_rows=skip_rows) as stream:
+        assert stream.headers == ['name', 'order', 'city']
+        assert stream.read() == [['Ray', 0, 'London'], ['John', 1, 'Tokyo'], ['Alex', 2, 'Berlin']]
 
 
 def test_stream_limit_rows():

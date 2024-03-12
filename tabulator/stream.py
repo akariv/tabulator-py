@@ -12,7 +12,7 @@ import tempfile
 import warnings
 from copy import copy
 from itertools import chain
-from collections import deque
+from collections import deque, Counter
 from .loaders.stream import StreamLoader
 from . import exceptions
 from . import helpers
@@ -236,6 +236,8 @@ class Stream(object):
                     self.__skip_rows_by_patterns.append(re.compile(directive['value']))
                 elif directive['type'] == 'preset' and directive['value'] == 'blank':
                     self.__skip_rows_by_presets['blank'] = True
+                elif directive['type'] == 'preset' and directive['value'] == 'auto':
+                    self.__skip_rows_by_presets['auto'] = True
                 else:
                     raise ValueError('Not supported skip rows: %s' % directive)
             else:
@@ -755,9 +757,19 @@ class Stream(object):
             except Exception as error:
                 raise exceptions.SourceError(str(error))
 
+        if self.__skip_rows_by_presets.get('auto'):
+            row_lengths = [len(row) for _, _, row in self.__sample_extended_rows]
+            most_common_length = Counter(row_lengths).most_common(1)[0][0]
+            for row_number, _, row in self.__sample_extended_rows:
+                if len(row) != most_common_length:
+                    self.__headers_row += 1
+                    self.__headers_row_last += 1
+                else:
+                    break
+
     def __extract_headers(self):
 
-        # Heders row is not set
+        # Headers row is not set
         if not self.__headers_row:
             return
 
