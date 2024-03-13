@@ -888,6 +888,7 @@ __Arguments__
         List of row numbers, strings and regex patterns as dicts to skip.
         If a string, it'll skip rows that their first cells begin with it e.g. '#' and '//'.
         To skip only completely blank rows use `{'type': 'preset', 'value': 'blank'}`
+        To try and auto detect the beginning of the table, use `{'type': 'preset', 'value': 'auto'}`
         To provide a regex pattern use  `{'type': 'regex', 'value': '^#'}`
         For example: `skip_rows=[1, '# comment', {'type': 'regex', 'value': '^# (regex|comment)'}]`
 

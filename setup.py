@@ -62,7 +62,7 @@ TESTS_REQUIRE = [
     'moto[server]',
 ]
 README = read('README.md')
-VERSION = read(PACKAGE, 'VERSION')
+VERSION = read('tabulator', 'VERSION')
 PACKAGES = find_packages(exclude=['examples', 'tests'])
 
 
