@@ -766,7 +766,7 @@ class Stream(object):
                 row_lengths.append(row_length)
             most_common_length = Counter(row_lengths).most_common(1)[0][0]
             for i, (row_number, _, row) in enumerate(self.__sample_extended_rows):
-                if row_lengths[i] != most_common_length:
+                if row_lengths[i] < most_common_length:
                     self.__headers_row += 1
                     self.__headers_row_last += 1
                 else:
