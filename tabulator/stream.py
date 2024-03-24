@@ -758,10 +758,15 @@ class Stream(object):
                 raise exceptions.SourceError(str(error))
 
         if self.__skip_rows_by_presets.get('auto'):
-            row_lengths = [len(row) for _, _, row in self.__sample_extended_rows]
+            row_lengths = []
+            for _, _, row in self.__sample_extended_rows:
+                row_length = len(row)
+                while row_length > 0 and row[row_length - 1] in [None, '']:
+                    row_length -= 1
+                row_lengths.append(row_length)
             most_common_length = Counter(row_lengths).most_common(1)[0][0]
-            for row_number, _, row in self.__sample_extended_rows:
-                if len(row) != most_common_length:
+            for i, (row_number, _, row) in enumerate(self.__sample_extended_rows):
+                if row_lengths[i] != most_common_length:
                     self.__headers_row += 1
                     self.__headers_row_last += 1
                 else:

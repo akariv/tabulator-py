@@ -671,6 +671,14 @@ def test_stream_skip_rows_preset_auto():
         assert stream.read() == [['Ray', 0, 'London'], ['John', 1, 'Tokyo'], ['Alex', 2, 'Berlin']]
 
 
+def test_stream_skip_rows_preset_auto_nones():
+    source = [[None, None, None], ['Staff locations', None, None], [None, None, None], ['Compiled on:', '2022-01-01', None, None], [None, None, None], ['name', 'order', 'city'], ['Ray', 0, 'London'], ['John', 1, 'Tokyo'], ['Alex', 2, 'Berlin']]
+    skip_rows = [{'type': 'preset', 'value': 'auto'}]
+    with Stream(source, headers=1, skip_rows=skip_rows) as stream:
+        assert stream.headers == ['name', 'order', 'city']
+        assert stream.read() == [['Ray', 0, 'London'], ['John', 1, 'Tokyo'], ['Alex', 2, 'Berlin']]
+
+
 def test_stream_limit_rows():
     source = 'data/special/long.csv'
     with Stream(source, headers=1, limit_rows=1) as stream:
